@@ -1,0 +1,65 @@
+{
+  "name": "comistory",
+  "version": "1.0.0",
+  "description": "Every commit tells a story",
+  "keywords": [
+    "git",
+    "commit",
+    "history",
+    "report",
+    "cli"
+  ],
+  "author": "Fauzira Alpiandi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fauziralpiandi/comistory.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fauziralpiandi/comistory/issues"
+  },
+  "homepage": "https://github.com/fauziralpiandi/comistory#readme",
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts",
+    "!dist/**/*.test.js",
+    "!dist/**/*.test.d.ts"
+  ],
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "bin": {
+    "comistory": "dist/src/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint src/**/*.ts",
+    "test": "tsc --noEmit && jest",
+    "build": "rm -rf dist && tsc",
+    "preflight": "pnpm format && pnpm lint && pnpm test && pnpm build",
+    "preview": "pnpm publish --dry-run --no-git-checks"
+  },
+  "dependencies": {
+    "axios": "1.9.0",
+    "commander": "13.1.0"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@types/jest": "29.5.14",
+    "@types/node": "22.15.3",
+    "eslint": "9.26.0",
+    "jest": "29.7.0",
+    "prettier": "3.5.3",
+    "semantic-release": "^24.2.3",
+    "ts-jest": "29.3.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.31.1"
+  }
+}
