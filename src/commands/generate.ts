@@ -7,7 +7,6 @@ import { markdownFormatter } from '../services/formatters/markdown';
 import { tokenService } from '../services/token';
 import { GitProvider } from '../services/git/interface';
 import { logger } from '../utils/logger';
-import { name } from '../../package.json';
 
 interface GenerateOptions {
   local?: boolean;
@@ -56,7 +55,7 @@ async function generateCommits(options: GenerateOptions): Promise<void> {
     }
 
     const markdown = markdownFormatter.format(commits);
-    const outputFile = options.output || `${name}.md`;
+    const outputFile = options.output || 'comistory.md';
 
     writeOutput(outputFile, markdown);
 
