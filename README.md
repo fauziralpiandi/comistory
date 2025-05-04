@@ -144,7 +144,7 @@ pnpm install
 pnpm build
 
 # Run the CLI
-node dist/index.js --help
+node dist/src/index.js --help
 ```
 
 ### Project Structure
