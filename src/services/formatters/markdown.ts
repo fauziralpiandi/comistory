@@ -256,6 +256,12 @@ export class MarkdownFormatter implements Formatter {
 
     // Ensure message is a string, never undefined
     const message = typeof commit.message === 'string' ? commit.message : '';
+    // Handle empty message case better
+    if (!message.trim()) {
+      return `Empty commit message (${commit.shortHash || 'unknown'})`;
+    }
+
+    // Get first line, ensure it's trimmed
     let firstLine = message.split('\n')[0].trim();
 
     if (firstLine.length > 100) {
@@ -267,7 +273,11 @@ export class MarkdownFormatter implements Formatter {
 
     // Add link to commit if repo URL is available
     if (commit.repoUrl && commit.hash) {
-      const commitUrl = `${commit.repoUrl}/commit/${commit.hash}`;
+      // Ensure repoUrl doesn't end with a slash before adding /commit/
+      const repoUrl = commit.repoUrl.endsWith('/')
+        ? commit.repoUrl.slice(0, -1)
+        : commit.repoUrl;
+      const commitUrl = `${repoUrl}/commit/${commit.hash}`;
       line += ` ([${shortHash}](${commitUrl}))`;
     } else {
       // For local commits without URLs, add the short hash for reference
@@ -276,7 +286,13 @@ export class MarkdownFormatter implements Formatter {
 
     // Add PR link if applicable
     if (commit.prNumber && commit.repoUrl) {
-      const prUrl = `${commit.repoUrl}/pull/${commit.prNumber}`;
+      // Ensure repoUrl doesn't end with a slash before adding /pull/
+      const repoUrl = commit.repoUrl.endsWith('/')
+        ? commit.repoUrl.slice(0, -1)
+        : commit.repoUrl;
+      const prUrl = `${repoUrl}/pull/${commit.prNumber}`;
+
+      // More precise replacements to avoid unintended substitutions
       line = line.replace(
         `(#${commit.prNumber})`,
         `([#${commit.prNumber}](${prUrl}))`,

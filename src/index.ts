@@ -23,7 +23,7 @@ function getPackageInfo() {
           description: pkg.description,
         };
       }
-    } catch (e) {
+    } catch {
       // Go ahead
     }
   }

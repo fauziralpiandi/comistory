@@ -24,4 +24,12 @@ describe('extractPullRequestNumber', () => {
       '123',
     );
   });
+
+  test('handles invalid input gracefully', () => {
+    // @ts-ignore - Testing invalid input
+    expect(extractPullRequestNumber(null)).toBeUndefined();
+    // @ts-ignore - Testing invalid input
+    expect(extractPullRequestNumber(undefined)).toBeUndefined();
+    expect(extractPullRequestNumber('')).toBeUndefined();
+  });
 });
