@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/fauziralpiandi/comistory#readme",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "files": [
     "dist/**/*.js",
