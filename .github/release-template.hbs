@@ -1,0 +1,48 @@
+# 📋 Comistory Release v{{version}}
+
+> Every commit tells a story
+
+Released on: {{date}}
+
+{{#if noteGroups}}
+{{#each noteGroups}}
+
+## {{title}}
+
+{{#each notes}}
+* {{#if commit.scope}}**{{commit.scope}}:** {{/if}}{{text}} ({{commit.shortHash}})
+{{/each}}
+{{/each}}
+{{/if}}
+
+{{#if commits}}
+## 🛠️ Commits
+
+{{#each commits}}
+- {{#if scope}}**{{scope}}:** {{/if}}{{subject}} ({{shortHash}})
+{{/each}}
+{{/if}}
+
+---
+
+## 📋 Installation
+
+```sh
+npm install -g comistory
+# OR
+yarn global add comistory
+# OR
+pnpm add -g comistory
+```
+
+## 🚀 Usage
+
+```sh
+# Generate report from local repository
+comistory generate --local
+
+# Generate report from remote repository
+comistory generate --remote username/repo
+```
+
+For more details, see the [full documentation](https://github.com/fauziralpiandi/comistory#readme).
