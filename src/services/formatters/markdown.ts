@@ -99,7 +99,7 @@ export class MarkdownFormatter implements Formatter {
       name: 'Other',
       emoji: '📦',
       regex: /^.*/i,
-      order: 99,
+      order: 999,
     },
   ];
 
